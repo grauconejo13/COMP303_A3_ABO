@@ -5,8 +5,8 @@ import com.drop.bloodbank.VanessaVictorino_COMP303A3_ABO.services.SeekerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -16,6 +16,12 @@ public class SeekerController {
     @Autowired
     private SeekerService seekerService;
 
+    @GetMapping("/seekers")  // Maps this method to /seekers
+    public String viewSeekersPage(Model model) {
+        model.addAttribute("seekers", seekerService.getAllSeekers());
+        return "seeker";  // Corresponds to seeker.html in the templates folder
+    }
+    
     // GET all seekers
     @GetMapping
     public List<Seeker> getAllSeekers() {
