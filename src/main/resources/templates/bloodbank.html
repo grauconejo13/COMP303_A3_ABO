@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Blood Bank Information</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+</head>
+<body>
+
+<nav class="container-fluid">
+    <ul>
+        <li><strong>Blood Bank System</strong></li>
+    </ul>
+    <ul>
+        <li><a href="/seekers">Seekers</a></li>
+        <li><a href="/bloodbanks">Blood Banks</a></li>
+        <li><a href="/bloodstocks">Blood Stock</a></li>
+    </ul>
+</nav>
+
+<main class="container">
+    <h2>Blood Bank List</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>Phone</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="bloodBank : ${bloodBanks}">
+            <td th:text="${bloodBank.id}">1</td>
+            <td th:text="${bloodBank.name}">City Blood Bank</td>
+            <td th:text="${bloodBank.address}">123 Street</td>
+            <td th:text="${bloodBank.city}">City</td>
+            <td th:text="${bloodBank.phone}">123-456-7890</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h3>Add New Blood Bank</h3>
+    <form th:action="@{/bloodbanks}" method="post">
+        <input type="text" name="name" placeholder="Blood Bank Name" required>
+        <input type="text" name="address" placeholder="Address" required>
+        <input type="text" name="city" placeholder="City" required>
+        <input type="tel" name="phone" placeholder="Phone" required>
+        <button type="submit">Add Blood Bank</button>
+    </form>
+</main>
+
+</body>
+</html>

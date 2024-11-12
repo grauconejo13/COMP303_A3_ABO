@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Blood Stock Information</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+</head>
+<body>
+
+<nav class="container-fluid">
+    <ul>
+        <li><strong>Blood Bank System</strong></li>
+    </ul>
+    <ul>
+        <li><a href="/seekers">Seekers</a></li>
+        <li><a href="/bloodbanks">Blood Banks</a></li>
+        <li><a href="/bloodstocks">Blood Stock</a></li>
+    </ul>
+</nav>
+
+<main class="container">
+    <h2>Blood Stock List</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Blood Group</th>
+            <th>Quantity</th>
+            <th>Best Before</th>
+            <th>Status</th>
+            <th>City</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="bloodStock : ${bloodStocks}">
+            <td th:text="${bloodStock.id}">1</td>
+            <td th:text="${bloodStock.bloodGroup}">A+</td>
+            <td th:text="${bloodStock.quantity}">10</td>
+            <td th:text="${bloodStock.bestBefore}">2023-12-01</td>
+            <td th:text="${bloodStock.status}">Available</td>
+            <td th:text="${bloodStock.city}">City</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h3>Add New Blood Stock</h3>
+    <form th:action="@{/bloodstocks}" method="post">
+        <input type="text" name="bloodGroup" placeholder="Blood Group" required>
+        <input type="number" name="quantity" placeholder="Quantity" min="1" required>
+        <input type="date" name="bestBefore" placeholder="Best Before" required>
+        <input type="text" name="status" placeholder="Status" required>
+        <input type="text" name="city" placeholder="City" required>
+        <button type="submit">Add Blood Stock</button>
+    </form>
+</main>
+
+</body>
+</html>

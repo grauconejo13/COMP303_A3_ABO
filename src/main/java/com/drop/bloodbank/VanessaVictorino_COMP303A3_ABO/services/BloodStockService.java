@@ -1,6 +1,6 @@
-package com.example.bloodbank.services;
+package com.drop.bloodbank.VanessaVictorino_COMP303A3_ABO.services;
 
-import com.example.bloodbank.entities.BloodStock;
+import com.drop.bloodbank.VanessaVictorino_COMP303A3_ABO.entities.BloodStock;
 import org.springframework.stereotype.Service;
 
 import java.util.*;

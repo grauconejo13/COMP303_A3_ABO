@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Seeker Information</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+</head>
+<body>
+
+<nav class="container-fluid">
+    <ul>
+        <li><strong>Blood Bank System</strong></li>
+    </ul>
+    <ul>
+        <li><a href="/seekers">Seekers</a></li>
+        <li><a href="/bloodbanks">Blood Banks</a></li>
+        <li><a href="/bloodstocks">Blood Stock</a></li>
+    </ul>
+</nav>
+
+<main class="container">
+    <h2>Seeker List</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Age</th>
+            <th>Blood Group</th>
+            <th>Phone</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="seeker : ${seekers}">
+            <td th:text="${seeker.id}">1</td>
+            <td th:text="${seeker.firstName}">John</td>
+            <td th:text="${seeker.lastName}">Doe</td>
+            <td th:text="${seeker.age}">30</td>
+            <td th:text="${seeker.bloodGroup}">A+</td>
+            <td th:text="${seeker.phone}">123-456-7890</td>
+            <td th:text="${seeker.email}">john@example.com</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h3>Add New Seeker</h3>
+    <form th:action="@{/seekers}" method="post">
+        <input type="text" name="firstName" placeholder="First Name" required>
+        <input type="text" name="lastName" placeholder="Last Name" required>
+        <input type="number" name="age" placeholder="Age" min="18" required>
+        <input type="text" name="bloodGroup" placeholder="Blood Group" required>
+        <input type="tel" name="phone" placeholder="Phone" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <button type="submit">Add Seeker</button>
+    </form>
+</main>
+
+</body>
+</html>
