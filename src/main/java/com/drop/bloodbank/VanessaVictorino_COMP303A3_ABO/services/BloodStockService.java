@@ -1,14 +1,25 @@
 package com.drop.bloodbank.VanessaVictorino_COMP303A3_ABO.services;
 
 import com.drop.bloodbank.VanessaVictorino_COMP303A3_ABO.entities.BloodStock;
+import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.*;
 
 @Service
 public class BloodStockService {
+
     private final Map<Integer, BloodStock> bloodStocks = new HashMap<>();  // In-memory storage for blood stocks
-    private int currentId = 1;  // To auto-increment BloodStock ID
+    private int currentId = 1;  // Auto-increment ID for each new blood stock entry
+
+    // Initialize with sample blood stock data
+    @PostConstruct
+    public void initData() {
+    	  bloodStocks.put(currentId, new BloodStock(currentId++, "A+", 50, LocalDate.now().plusMonths(1), "Available", "New York"));
+          bloodStocks.put(currentId, new BloodStock(currentId++, "O-", 30, LocalDate.now().plusMonths(2), "Available", "Los Angeles"));
+          bloodStocks.put(currentId, new BloodStock(currentId++, "B+", 20, LocalDate.now().plusWeeks(3), "Low Stock", "Chicago"));
+    }
 
     /**
      * Get all blood stock records.
@@ -50,7 +61,7 @@ public class BloodStockService {
             bloodStocks.put(id, bloodStock);
             return bloodStock;
         }
-        return null;  // Returns null if the blood stock is not found
+        return null;  // Return null if the blood stock is not found
     }
 
     /**
@@ -84,11 +95,7 @@ public class BloodStockService {
      * @return true if the blood group is available in the specified quantity, false otherwise.
      */
     public boolean isBloodGroupAvailable(String bloodGroup, int minimumQuantity) {
-        for (BloodStock stock : bloodStocks.values()) {
-            if (stock.getBloodGroup().equalsIgnoreCase(bloodGroup) && stock.getQuantity() >= minimumQuantity) {
-                return true;
-            }
-        }
-        return false;
+        return bloodStocks.values().stream()
+                .anyMatch(stock -> stock.getBloodGroup().equalsIgnoreCase(bloodGroup) && stock.getQuantity() >= minimumQuantity);
     }
 }

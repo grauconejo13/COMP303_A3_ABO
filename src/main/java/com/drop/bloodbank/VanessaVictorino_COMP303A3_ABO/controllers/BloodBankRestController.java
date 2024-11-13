@@ -2,25 +2,28 @@ package com.drop.bloodbank.VanessaVictorino_COMP303A3_ABO.controllers;
 
 import com.drop.bloodbank.VanessaVictorino_COMP303A3_ABO.entities.BloodBank;
 import com.drop.bloodbank.VanessaVictorino_COMP303A3_ABO.services.BloodBankService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/bloodbank")
+@RequestMapping("/api/bloodbanks")
 public class BloodBankRestController {
 
-    @Autowired
-    private BloodBankService bloodBankService;
-    
+    private final BloodBankService bloodBankService;
+
+    // Constructor-based injection is preferred for better testing and immutability
+    public BloodBankRestController(BloodBankService bloodBankService) {
+        this.bloodBankService = bloodBankService;
+    }
+
     // GET all blood banks
     @GetMapping
-    public List<BloodBank> getAllBloodBanks() {
-        return bloodBankService.getAllBloodBanks();
+    public ResponseEntity<List<BloodBank>> getAllBloodBanks() {
+        List<BloodBank> bloodBanks = bloodBankService.getAllBloodBanks();
+        return ResponseEntity.ok(bloodBanks);
     }
 
     // GET a blood bank by ID
