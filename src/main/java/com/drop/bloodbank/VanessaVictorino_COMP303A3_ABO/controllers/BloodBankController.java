@@ -5,16 +5,23 @@ import com.drop.bloodbank.VanessaVictorino_COMP303A3_ABO.services.BloodBankServi
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/bloodbanks")
+@RequestMapping("/api/bloodbank")
 public class BloodBankController {
 
     @Autowired
     private BloodBankService bloodBankService;
+    
+    @GetMapping("/bloodbank")
+    public String viewBloodBankPage(Model model) {
+        model.addAttribute("bloodbanks", bloodBankService.getAllBloodBanks());
+        return "bloodbank";  // Must match the template filename bloodbank.html
+    }
 
     // GET all blood banks
     @GetMapping
