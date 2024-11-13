@@ -16,7 +16,6 @@
         <li><a href="/seekers">Seekers</a></li>
         <li><a href="/bloodbanks">Blood Banks</a></li>
         <li><a href="/bloodstocks">Blood Stock</a></li>
-		
     </ul>
 </nav>
 
@@ -37,19 +36,19 @@
         <tr th:each="bloodStock : ${bloodStocks}">
             <td th:text="${bloodStock.id}">1</td>
             <td th:text="${bloodStock.bloodGroup}">A+</td>
-            <td th:text="${bloodStock.quantity}">10</td>
-            <td th:text="${bloodStock.bestBefore}">2023-12-01</td>
+            <td th:text="${bloodStock.quantity}">50</td>
+            <td th:text="${bloodStock.bestBefore}">2024-12-31</td>
             <td th:text="${bloodStock.status}">Available</td>
-            <td th:text="${bloodStock.city}">City</td>
+            <td th:text="${bloodStock.city}">City Center</td>
         </tr>
         </tbody>
     </table>
 
     <h3>Add New Blood Stock</h3>
-    <form th:action="@{/bloodstocks}" method="post">
+    <form th:action="@{/bloodstocks/add}" method="post">
         <input type="text" name="bloodGroup" placeholder="Blood Group" required>
-        <input type="number" name="quantity" placeholder="Quantity" min="1" required>
-        <input type="date" name="bestBefore" placeholder="Best Before" required>
+        <input type="number" name="quantity" placeholder="Quantity" required>
+        <input type="date" name="bestBefore" placeholder="Best Before Date" required>
         <input type="text" name="status" placeholder="Status" required>
         <input type="text" name="city" placeholder="City" required>
         <button type="submit">Add Blood Stock</button>

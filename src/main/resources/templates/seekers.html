@@ -41,13 +41,13 @@
             <td th:text="${seeker.age}">30</td>
             <td th:text="${seeker.bloodGroup}">A+</td>
             <td th:text="${seeker.phone}">123-456-7890</td>
-            <td th:text="${seeker.email}">john@example.com</td>
+            <td th:text="${seeker.email}">john.doe@example.com</td>
         </tr>
         </tbody>
     </table>
 
     <h3>Add New Seeker</h3>
-    <form th:action="@{/seekers}" method="post">
+    <form th:action="@{/seekers/add}" method="post">
         <input type="text" name="firstName" placeholder="First Name" required>
         <input type="text" name="lastName" placeholder="Last Name" required>
         <input type="number" name="age" placeholder="Age" min="18" required>

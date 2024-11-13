@@ -19,30 +19,25 @@ public class BloodBankViewController {
         this.bloodBankService = bloodBankService;
     }
 
-    // GET method to show the blood bank list
     @GetMapping
     public String viewBloodBankPage(Model model) {
-        model.addAttribute("bloodbanks", bloodBankService.getAllBloodBanks());
-        return "bloodbanks";  // Renders the bloodbank.html template
+        model.addAttribute("bloodBanks", bloodBankService.getAllBloodBanks());
+        return "bloodbanks";  // Renders the bloodbanks.html template
     }
-    
-    // POST method to add a new blood bank
+
     @PostMapping("/add")
     public String addBloodBank(@RequestParam("name") String name,
                                @RequestParam("address") String address,
                                @RequestParam("city") String city,
                                @RequestParam("phone") String phone) {
-        // Create a new BloodBank entity
         BloodBank newBloodBank = new BloodBank();
         newBloodBank.setName(name);
         newBloodBank.setAddress(address);
         newBloodBank.setCity(city);
         newBloodBank.setPhone(phone);
 
-        // Save the new blood bank using the service
         bloodBankService.addBloodBank(newBloodBank);
 
-        // Redirect back to the blood bank list page
-        return "redirect:/bloodbanks";
+        return "redirect:/bloodbanks";  // Redirects to GET /bloodbanks to refresh the data
     }
 }
