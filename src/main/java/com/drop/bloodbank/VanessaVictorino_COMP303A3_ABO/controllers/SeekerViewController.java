@@ -23,7 +23,7 @@ public class SeekerViewController {
     
     @GetMapping("/seekers")
     public String viewSeekerPage() {
-        return "seekers";  // This should load test.html
+        return "seekers"; 
     }
     
     // Display a list of all seekers
@@ -32,6 +32,14 @@ public class SeekerViewController {
         List<Seeker> seekers = seekerService.getAllSeekers();
         model.addAttribute("seekers", seekers);
         return "seekers";  // This should match the template name (seekers.html)
+    }
+    
+    @PostMapping("/seekers")
+    public String addSeeker(@ModelAttribute Seeker seeker, Model model) {
+        // Assuming you have a method in your service to save a seeker
+        seekerService.addSeeker(seeker);
+        model.addAttribute("seekers", seekerService.getAllSeekers());
+        return "seekers"; // Return to the seekers view or any other appropriate view
     }
 
     // Display a form for adding a new seeker

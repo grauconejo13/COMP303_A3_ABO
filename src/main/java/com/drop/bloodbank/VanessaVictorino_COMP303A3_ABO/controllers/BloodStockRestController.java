@@ -12,17 +12,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/bloodstock")
-public class BloodStockController {
+public class BloodStockRestController {
 
     @Autowired
     private BloodStockService bloodStockService;
     
-    @GetMapping("/bloodstock")
-    public String viewBloodStockPage(Model model) {
-        model.addAttribute("bloodstocks", bloodStockService.getAllBloodStocks());
-        return "bloodstock";  // Must match the template filename bloodstock.html
-    }
-
     // GET all blood stocks
     @GetMapping
     public List<BloodStock> getAllBloodStocks() {
