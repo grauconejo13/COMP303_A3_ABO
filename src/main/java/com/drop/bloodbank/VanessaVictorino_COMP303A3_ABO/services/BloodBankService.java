@@ -17,6 +17,7 @@ public class BloodBankService {
         // Sample blood bank data
         bloodBanks.put(currentId, new BloodBank(currentId++, "Central Blood Bank", "123 Main St", "City Center", "123-456-7890"));
         bloodBanks.put(currentId, new BloodBank(currentId++, "City Blood Center", "456 Elm St", "Uptown", "098-765-4321"));
+        
     }
 
     public List<BloodBank> getAllBloodBanks() {
@@ -29,5 +30,27 @@ public class BloodBankService {
         return bloodBank;
     }
     
-    // Additional methods for update, delete, etc. if needed
+    /**
+     * Update an existing blood bank by ID.
+     * @param id The ID of the BloodBank to update.
+     * @param bloodBank The updated BloodBank object.
+     * @return The updated BloodBank object if found, otherwise null.
+     */
+    public BloodBank updateBloodBank(int id, BloodBank bloodBank) {
+        if (bloodBanks.containsKey(id)) {
+            bloodBank.setId(id);  // Preserve the original ID
+            bloodBanks.put(id, bloodBank);  // Update the record in the map
+            return bloodBank;
+        }
+        return null;  // Return null if the blood bank entry is not found
+    }
+
+    /**
+     * Delete a blood bank by ID.
+     * @param id The ID of the BloodBank to delete.
+     * @return true if deletion was successful, false otherwise.
+     */
+    public boolean deleteBloodBank(int id) {
+        return bloodBanks.remove(id) != null;
+    }
 }

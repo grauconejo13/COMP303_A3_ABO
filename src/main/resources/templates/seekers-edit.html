@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Edit Seeker</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+	<style>
+			.container-fluid{width:100%;background-color: gainsboro;color:ghostwhite;}
+			.container{width:80%}
+		</style>
+</head>
+<body>
+
+<nav class="container-fluid">
+    <ul>
+        <li><strong>Blood Bank System</strong></li>
+    </ul>
+    <ul>
+        <li><a href="/seekers">Seekers</a></li>
+        <li><a href="/bloodbanks">Blood Banks</a></li>
+        <li><a href="/bloodstocks">Blood Stocks</a></li>
+    </ul>
+</nav>
+
+<main class="container">
+    <h2>Edit Seeker</h2>
+    <form th:action="@{/seekers/edit/{id}(id=${seeker.id})}" method="post">
+        <input type="text" name="firstName" th:value="${seeker.firstName}" placeholder="First Name" required>
+        <input type="text" name="lastName" th:value="${seeker.lastName}" placeholder="Last Name" required>
+        <input type="number" name="age" th:value="${seeker.age}" placeholder="Age" required>
+        <input type="text" name="bloodGroup" th:value="${seeker.bloodGroup}" placeholder="Blood Group" required>
+        <input type="tel" name="phone" th:value="${seeker.phone}" placeholder="Phone" required>
+        <input type="email" name="email" th:value="${seeker.email}" placeholder="Email" required>
+        <button type="submit">Save Changes</button>
+    </form>
+	<a href="/seekers" role="button">Back to Seekers List</a>
+</main>
+
+</body>
+</html>

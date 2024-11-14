@@ -5,6 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Seeker Information</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+	<style>
+			.container-fluid{background-color:gainsboro;color:ghostwhite;width:100%;}
+	        .container {
+	            margin-top: 20px;
+	        }
+	        form {
+	            display: flex;
+	            gap: 10px;
+	            flex-wrap: wrap;
+	        }
+	        table {
+	            margin-top: 30px;
+	        }
+	        button.edit, button.delete {
+	            padding: 5px 10px;
+	            font-size: 0.9em;
+	        }
+	    </style>
 </head>
 <body>
 
@@ -20,42 +38,41 @@
 </nav>
 
 <main class="container">
-    <h2>Seeker List</h2>
-    <table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Age</th>
-            <th>Blood Group</th>
-            <th>Phone</th>
-            <th>Email</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="seeker : ${seekers}">
-            <td th:text="${seeker.id}">1</td>
-            <td th:text="${seeker.firstName}">John</td>
-            <td th:text="${seeker.lastName}">Doe</td>
-            <td th:text="${seeker.age}">30</td>
-            <td th:text="${seeker.bloodGroup}">A+</td>
-            <td th:text="${seeker.phone}">123-456-7890</td>
-            <td th:text="${seeker.email}">john.doe@example.com</td>
-        </tr>
-        </tbody>
-    </table>
+	
+	   <h2>Seeker List</h2>
+	   <a href="/seekers/add" role="button" class="button">Add New Seeker</a>
+	      <table>
+	          <thead>
+	          <tr>
+	              <th>ID</th>
+	              <th>First Name</th>
+	              <th>Last Name</th>
+	              <th>Age</th>
+	              <th>Blood Group</th>
+	              <th>Phone</th>
+	              <th>Email</th>
+	              <th>Actions</th>
+	          </tr>
+	          </thead>
+	          <tbody>
+				
+	          <tr th:each="seeker : ${seekers}">
+	              <td th:text="${seeker.id}"></td>
+	              <td th:text="${seeker.firstName}"></td>
+	              <td th:text="${seeker.lastName}"></td>
+	              <td th:text="${seeker.age}"></td>
+	              <td th:text="${seeker.bloodGroup}"></td>
+	              <td th:text="${seeker.phone}"></td>
+	              <td th:text="${seeker.email}"></td>
+	              <td class="action-buttons">
+                  <a th:href="@{/seekers/edit/{id}(id=${seeker.id})}" class="edit" role="button">Edit</a>
+                  <a th:href="@{/seekers/delete/{id}(id=${seeker.id})}" class="delete" role="button" onclick="return confirm('Are you sure?')">Delete</a>
+              </td>
+	          </tr>
+	          </tbody>
+	      </table>
 
-    <h3>Add New Seeker</h3>
-    <form th:action="@{/seekers/add}" method="post">
-        <input type="text" name="firstName" placeholder="First Name" required>
-        <input type="text" name="lastName" placeholder="Last Name" required>
-        <input type="number" name="age" placeholder="Age" min="18" required>
-        <input type="text" name="bloodGroup" placeholder="Blood Group" required>
-        <input type="tel" name="phone" placeholder="Phone" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <button type="submit">Add Seeker</button>
-    </form>
+   
 </main>
 
 </body>

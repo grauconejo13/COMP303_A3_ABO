@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Edit Blood Bank</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+	<style>
+			.container-fluid{width:100%;background-color: gainsboro;color:ghostwhite;}
+			.container{width:80%}
+		</style>
+</head>
+<body>
+
+<nav class="container-fluid">
+    <ul>
+        <li><strong>Blood Bank System</strong></li>
+    </ul>
+    <ul>
+        <li><a href="/seekers">Seekers</a></li>
+        <li><a href="/bloodbanks">Blood Banks</a></li>
+        <li><a href="/bloodstocks">Blood Stocks</a></li>
+    </ul>
+</nav>
+
+<main class="container">
+    <h2>Edit Blood Bank</h2>
+    <form th:action="@{/bloodbanks/edit/{id}(id=${bloodBank.id})}" method="post">
+        <input type="text" name="name" th:value="${bloodBank.name}" placeholder="Blood Bank Name" required>
+        <input type="text" name="address" th:value="${bloodBank.address}" placeholder="Address" required>
+        <input type="text" name="city" th:value="${bloodBank.city}" placeholder="City" required>
+        <input type="tel" name="phone" th:value="${bloodBank.phone}" placeholder="Phone" required>
+        <button type="submit">Save Changes</button>
+    </form>
+	<a href="/bloodbanks" role="button">Back to Blood Banks List</a>
+</main>
+
+</body>
+</html>

@@ -18,6 +18,7 @@ public class BloodStockService {
         // Sample data
         bloodStocks.put(currentId, new BloodStock(currentId++, "A+", 50, LocalDate.now().plusDays(30), "Available", "City Center"));
         bloodStocks.put(currentId, new BloodStock(currentId++, "O-", 30, LocalDate.now().plusDays(20), "Available", "Uptown"));
+        
     }
 
     public List<BloodStock> getAllBloodStocks() {
@@ -30,5 +31,27 @@ public class BloodStockService {
         return bloodStock;
     }
     
-    // Additional methods for update, delete, etc., if needed
+    /**
+     * Update an existing blood stock record by ID.
+     * @param id The ID of the BloodStock to update.
+     * @param bloodStock The updated BloodStock object.
+     * @return The updated BloodStock object if found, otherwise null.
+     */
+    public BloodStock updateBloodStock(int id, BloodStock bloodStock) {
+        if (bloodStocks.containsKey(id)) {
+            bloodStock.setId(id);  // Preserve the ID
+            bloodStocks.put(id, bloodStock);  // Update the record in the map
+            return bloodStock;
+        }
+        return null;  // Return null if the blood stock entry is not found
+    }
+
+    /**
+     * Delete a blood stock record by ID.
+     * @param id The ID of the BloodStock to delete.
+     * @return true if deletion was successful, false otherwise.
+     */
+    public boolean deleteBloodStock(int id) {
+        return bloodStocks.remove(id) != null;
+    }
 }

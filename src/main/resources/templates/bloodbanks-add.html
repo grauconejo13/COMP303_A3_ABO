@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Blood Bank Information</title>
+    <title>Add Blood Bank</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
 	<style>
 			.container-fluid{background-color:gainsboro;color:ghostwhite;width:100%;}
@@ -38,34 +38,16 @@
 </nav>
 
 <main class="container">
-	
-	<h2>Blood Bank List</h2>
-	<a href="/bloodbanks/add" role="button" class="button">Add New Blood Bank</a>
-	   <table>
-	       <thead>
-	       <tr>
-	           <th>ID</th>
-	           <th>Name</th>
-	           <th>Address</th>
-	           <th>City</th>
-	           <th>Phone</th>
-	           <th>Actions</th>
-	       </tr>
-	       </thead>
-	       <tbody>
-	       <tr th:each="bloodBank : ${bloodbanks}">
-	           <td th:text="${bloodBank.id}"></td>
-	           <td th:text="${bloodBank.name}"></td>
-	           <td th:text="${bloodBank.address}"></td>
-	           <td th:text="${bloodBank.city}"></td>
-	           <td th:text="${bloodBank.phone}"></td>
-			   <td class"action-buttons">
-                  <a th:href="@{/bloodbanks/edit/{id}(id=${bloodBank.id})}" class="edit" role="button">Edit</a>
-                  <a th:href="@{/bloodbanks/delete/{id}(id=${bloodBank.id})}" class="delete" role="button" onclick="return confirm('Are you sure?')">Delete</a>
-              </td>
-	       </tr>
-	       </tbody>
-	   </table>
+	<h3>Add New Blood Bank</h3>
+	    <form th:action="@{/bloodbanks/add}" method="post">
+	        <input type="text" name="name" placeholder="Blood Bank Name" required>
+	        <input type="text" name="address" placeholder="Address" required>
+	        <input type="text" name="city" placeholder="City" required>
+	        <input type="tel" name="phone" placeholder="Phone" required>
+	        <button type="submit">Add Blood Bank</button>
+	    </form>
+		<a href="/bloodbanks" role="button">Back to Blood Banks List</a>
+ 	     
 </main>
 
 </body>

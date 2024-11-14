@@ -19,6 +19,10 @@ public class SeekerService {
         seekers.put(currentId, new Seeker(currentId++, "Jane", "Smith", 25, "O-", "987-654-3210", "jane.smith@example.com"));
     }
 
+    public Seeker getSeekerById(int id) {
+        return seekers.get(id);  // Returns the Seeker if found, otherwise null
+    }
+    
     public List<Seeker> getAllSeekers() {
         return new ArrayList<>(seekers.values());
     }
@@ -29,5 +33,16 @@ public class SeekerService {
         return seeker;
     }
 
-    // Additional methods for update, delete, etc., if needed
+    public Seeker updateSeeker(int id, Seeker seeker) {
+        if (seekers.containsKey(id)) {
+            seeker.setId(id);
+            seekers.put(id, seeker);
+            return seeker;
+        }
+        return null;
+    }
+
+    public boolean deleteSeeker(int id) {
+        return seekers.remove(id) != null;
+    }
 }

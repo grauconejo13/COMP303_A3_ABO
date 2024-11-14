@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add Blood Stock</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+	<style>
+		.container-fluid{width:100%;background-color: gainsboro;color:ghostwhite;}
+		.container{width:80%}
+	</style>
+</head>
+<body>
+
+<nav class="container-fluid">
+    <ul>
+        <li><strong>Blood Bank System</strong></li>
+    </ul>
+    <ul>
+        <li><a href="/seekers">Seekers</a></li>
+        <li><a href="/bloodbanks">Blood Banks</a></li>
+        <li><a href="/bloodstocks">Blood Stocks</a></li>
+    </ul>
+</nav>
+
+<main class="container">
+	<h3>Add New Blood Stock</h3>
+	   <form th:action="@{/bloodstocks/add}" method="post">
+	       <input type="text" name="bloodGroup" placeholder="Blood Group" required>
+	       <input type="number" name="quantity" placeholder="Quantity" required>
+	       <input type="date" name="bestBefore" placeholder="Best Before Date" required>
+	       <input type="text" name="status" placeholder="Status" required>
+	       <input type="text" name="city" placeholder="City" required>
+	       <button type="submit">Add Blood Stock</button>
+	   </form>
+	   <a href="/bloodstocks" role="button">Back to Blood Stocks List</a>
+</main>
+
+</body>
+</html>

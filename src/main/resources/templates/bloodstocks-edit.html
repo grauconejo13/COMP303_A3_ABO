@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Edit Blood Stock</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+	<style>
+		.container-fluid{width:100%;background-color: gainsboro;color:ghostwhite;}
+		.container{width:80%}
+	</style>
+</head>
+<body>
+
+<nav class="container-fluid">
+    <ul>
+        <li><strong>Blood Bank System</strong></li>
+    </ul>
+    <ul>
+        <li><a href="/seekers">Seekers</a></li>
+        <li><a href="/bloodbanks">Blood Banks</a></li>
+        <li><a href="/bloodstocks">Blood Stocks</a></li>
+    </ul>
+</nav>
+
+<main class="container">
+    <h2>Edit Blood Stock</h2>
+    <form th:action="@{/bloodstocks/edit/{id}(id=${bloodStock.id})}" method="post">
+        <input type="text" name="bloodGroup" th:value="${bloodStock.bloodGroup}" placeholder="Blood Group" required>
+        <input type="number" name="quantity" th:value="${bloodStock.quantity}" placeholder="Quantity" required>
+        <input type="text" name="bestBefore" th:value="${bloodStock.bestBefore}" placeholder="Best Before (YYYY-MM-DD)" required>
+        <input type="text" name="status" th:value="${bloodStock.status}" placeholder="Status" required>
+        <input type="text" name="city" th:value="${bloodStock.city}" placeholder="City" required>
+        <button type="submit">Save Changes</button>
+        <a href="/bloodstocks" role="button">Cancel</a>
+    </form>
+	<a href="/bloodstocks" role="button">Back to Blood Stocks List</a>
+</main>
+
+</body>
+</html>

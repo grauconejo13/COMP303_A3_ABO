@@ -5,6 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Blood Stock Information</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+	<style>
+			.container-fluid{background-color: gainsboro;color:ghostwhite;width:100%;}
+	        .container {
+	            margin-top: 20px;
+	        }
+	        form {
+	            display: flex;
+	            gap: 10px;
+	            flex-wrap: wrap;
+	        }
+	        table {
+	            margin-top: 30px;
+	        }
+	        button.edit, button.delete {
+	            padding: 5px 10px;
+	            font-size: 0.9em;
+	        }
+	    </style>
+	
 </head>
 <body>
 
@@ -20,39 +39,37 @@
 </nav>
 
 <main class="container">
-    <h2>Blood Stock List</h2>
-    <table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Blood Group</th>
-            <th>Quantity</th>
-            <th>Best Before</th>
-            <th>Status</th>
-            <th>City</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="bloodStock : ${bloodStocks}">
-            <td th:text="${bloodStock.id}">1</td>
-            <td th:text="${bloodStock.bloodGroup}">A+</td>
-            <td th:text="${bloodStock.quantity}">50</td>
-            <td th:text="${bloodStock.bestBefore}">2024-12-31</td>
-            <td th:text="${bloodStock.status}">Available</td>
-            <td th:text="${bloodStock.city}">City Center</td>
-        </tr>
-        </tbody>
-    </table>
-
-    <h3>Add New Blood Stock</h3>
-    <form th:action="@{/bloodstocks/add}" method="post">
-        <input type="text" name="bloodGroup" placeholder="Blood Group" required>
-        <input type="number" name="quantity" placeholder="Quantity" required>
-        <input type="date" name="bestBefore" placeholder="Best Before Date" required>
-        <input type="text" name="status" placeholder="Status" required>
-        <input type="text" name="city" placeholder="City" required>
-        <button type="submit">Add Blood Stock</button>
-    </form>
+   
+	<h2>Blood Stock List</h2>
+	<a href="/bloodstocks/add" role="button" class="button">Add New Blood Stock</a>
+	    <table>
+	        <thead>
+	        <tr>
+	            <th>ID</th>
+	            <th>Blood Group</th>
+	            <th>Quantity</th>
+	            <th>Best Before</th>
+	            <th>Status</th>
+	            <th>City</th>
+	            <th>Actions</th>
+	        </tr>
+	        </thead>
+	        <tbody>
+				
+	        <tr th:each="bloodStock : ${bloodstocks}">
+	            <td th:text="${bloodStock.id}"></td>
+	            <td th:text="${bloodStock.bloodGroup}"></td>
+	            <td th:text="${bloodStock.quantity}"></td>
+	            <td th:text="${bloodStock.bestBefore}"></td>
+	            <td th:text="${bloodStock.status}"></td>
+	            <td th:text="${bloodStock.city}"></td>
+				<td class="action-buttons">
+	                <a th:href="@{/bloodstocks/edit/{id}(id=${bloodStock.id})}" class="edit" role="button">Edit</a>
+	                <a th:href="@{/bloodstocks/delete/{id}(id=${bloodStock.id})}" class="delete" role="button" onclick="return confirm('Are you sure?')">Delete</a>
+	            </td>
+	        </tr>
+	        </tbody>
+	    </table>
 </main>
 
 </body>
