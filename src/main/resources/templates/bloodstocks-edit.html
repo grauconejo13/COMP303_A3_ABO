@@ -29,7 +29,19 @@
         <input type="text" name="bloodGroup" th:value="${bloodStock.bloodGroup}" placeholder="Blood Group" required>
         <input type="number" name="quantity" th:value="${bloodStock.quantity}" placeholder="Quantity" required>
         <input type="text" name="bestBefore" th:value="${bloodStock.bestBefore}" placeholder="Best Before (YYYY-MM-DD)" required>
-        <input type="text" name="status" th:value="${bloodStock.status}" placeholder="Status" required>
+		<label for="status">Status</label>
+		<select name="status" id"status" =th:value="${bloodStock.status}" required>
+		   <option value="Available">Available</option>
+	       <option value="Low Stock">Low Stock</option>
+	       <option value="Out of Stock">Out of Stock</option>
+	       <option value="Reserved">Reserved</option>
+	       <option value="Expired">Expired</option>
+	       <option value="Pending Testing">Pending Testing</option>
+	       <option value="Quarantined">Quarantined</option>
+	       <option value="Contaminated">Contaminated</option>
+	       <option value="On Hold">On Hold</option>
+	       <option value="Recalled">Recalled</option>
+		</select>
         <input type="text" name="city" th:value="${bloodStock.city}" placeholder="City" required>
         <button type="submit">Save Changes</button>
     </form>
