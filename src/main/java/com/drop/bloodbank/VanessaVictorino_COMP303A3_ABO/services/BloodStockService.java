@@ -30,6 +30,10 @@ public class BloodStockService {
         bloodStocks.put(bloodStock.getId(), bloodStock);
         return bloodStock;
     }
+   
+    public BloodStock getBloodStockById(int id) {
+        return bloodStocks.get(id); // Retrieves the blood bank by ID or returns null if not found
+    }
     
     /**
      * Update an existing blood stock record by ID.

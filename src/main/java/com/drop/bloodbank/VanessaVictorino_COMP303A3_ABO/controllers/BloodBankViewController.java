@@ -48,6 +48,17 @@ public class BloodBankViewController {
         return "bloodbanks-add";  // Render the add bloodbanks page
     }
     
+ // GET method to show the form for editing a BloodBank
+    @GetMapping("/edit/{id}")
+    public String editBloodBankForm(@PathVariable int id, Model model) {
+        BloodBank bloodBank = bloodBankService.getBloodBankById(id);
+        if (bloodBank == null) {
+            return "redirect:/bloodbanks"; // Redirect if blood bank not found
+        }
+        model.addAttribute("bloodBank", bloodBank);
+        return "bloodbanks-edit";  // Render the bloodbanks-edit.html form
+    }
+    
     @PostMapping("/edit/{id}")
     public String updateBloodBank(@PathVariable int id,
                                   @RequestParam("name") String name,

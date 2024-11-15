@@ -23,12 +23,17 @@ public class BloodBankService {
     public List<BloodBank> getAllBloodBanks() {
         return new ArrayList<>(bloodBanks.values());
     }
-
+    public BloodBank getBloodBankById(int id) {
+        return bloodBanks.get(id); // Retrieves the blood bank by ID or returns null if not found
+    }
+    
     public BloodBank addBloodBank(BloodBank bloodBank) {
         bloodBank.setId(currentId++);
         bloodBanks.put(bloodBank.getId(), bloodBank);
         return bloodBank;
     }
+    
+    
     
     /**
      * Update an existing blood bank by ID.

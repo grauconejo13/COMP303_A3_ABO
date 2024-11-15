@@ -1,5 +1,6 @@
 package com.drop.bloodbank.VanessaVictorino_COMP303A3_ABO.controllers;
 
+import com.drop.bloodbank.VanessaVictorino_COMP303A3_ABO.entities.BloodBank;
 import com.drop.bloodbank.VanessaVictorino_COMP303A3_ABO.entities.BloodStock;
 import com.drop.bloodbank.VanessaVictorino_COMP303A3_ABO.services.BloodStockService;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,12 @@ public class BloodStockViewController {
         return "bloodstocks";  // Maps to bloodstocks.html
     }
 
+    @GetMapping("/add")
+    public String showAddSeekerForm(Model model) {
+        model.addAttribute("bloodstocks", new BloodStock());
+        return "bloodstocks-add";  // Render the add bloodstocks page
+    }
+    
     @PostMapping("/add")
     public String addBloodStock(@RequestParam("bloodGroup") String bloodGroup,
                                 @RequestParam("quantity") int quantity,
@@ -46,10 +53,15 @@ public class BloodStockViewController {
         return "redirect:/bloodstocks";  // Refreshes the view
     }
     
-    @GetMapping("/add")
-    public String showAddSeekerForm(Model model) {
-        model.addAttribute("bloodstocks", new BloodStock());
-        return "bloodstocks-add";  // Render the add bloodstocks page
+ // GET method to show the form for editing a BloodBank
+    @GetMapping("/edit/{id}")
+    public String editBloodStockForm(@PathVariable int id, Model model) {
+        BloodStock bloodStock = bloodStockService.getBloodStockById(id);
+        if (bloodStock == null) {
+            return "redirect:/bloodstocks"; // Redirect if blood bank not found
+        }
+        model.addAttribute("bloodStock", bloodStock);
+        return "bloodstocks-edit";  // Render the bloodstocks-edit.html form
     }
     
     @PostMapping("/edit/{id}")

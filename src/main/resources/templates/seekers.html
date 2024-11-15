@@ -6,22 +6,50 @@
     <title>Seeker Information</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
 	<style>
-			.container-fluid{background-color:gainsboro;color:ghostwhite;width:100%;}
-	        .container {
-	            margin-top: 20px;
-	        }
-	        form {
-	            display: flex;
-	            gap: 10px;
-	            flex-wrap: wrap;
-	        }
-	        table {
-	            margin-top: 30px;
-	        }
-	        button.edit, button.delete {
-	            padding: 5px 10px;
-	            font-size: 0.9em;
-	        }
+		.container-fluid { background-color: gainsboro; color: ghostwhite; width: 100%; }
+		       .container { margin-top: 20px; }
+		       form { display: flex; gap: 10px; flex-wrap: wrap; }
+		       
+		       /* Table styling */
+		       table {
+		           margin-top: 30px;
+		           width: 100%;
+		           border: 1px solid #ddd;
+		           border-collapse: collapse;
+		       }
+		       th, td {
+		           padding: 10px;
+		           text-align: left;
+		           border: 1px solid #ddd;
+		       }
+		       
+		       /* Button styling */
+		       .action-buttons {
+		           display: flex;
+		           gap: 8px;
+		       }
+		       .add, .edit, .delete {
+		           font-size: 0.8em; /* Smaller font for buttons */
+		           padding: 4px 8px; /* Small padding for compact buttons */
+		       }
+		       
+		       /* Specific button colors */
+		       .edit {
+		           background-color: #4CAF50;
+		           color: white;
+		       }
+		       .delete {
+		           background-color: #f44336;
+		           color: white;
+		       }
+		       
+		       /* Additional button hover effect */
+		       .edit:hover {
+		           background-color: #45a049;
+		       }
+		       .delete:hover {
+		           background-color: #d32f2f;
+		       }
 	    </style>
 </head>
 <body>
@@ -40,7 +68,7 @@
 <main class="container">
 	
 	   <h2>Seeker List</h2>
-	   <a href="/seekers/add" role="button" class="button">Add New Seeker</a>
+	   <a href="/seekers/add" role="button" class="add">Add New Seeker</a>
 	      <table>
 	          <thead>
 	          <tr>
